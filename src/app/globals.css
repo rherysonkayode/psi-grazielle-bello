@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Paleta da marca */
+  --color-azul-serenity: #A9D6E5;
+  --color-azul-serenity-soft: #D3EBF2;
+  --color-azul-profundo: #356C7D;
+  --color-azul-profundo-dark: #264F5C;
+  --color-abobora: #E8A07A;
+  --color-terracota: #C87552;
+  --color-terracota-dark: #9A5436;
+  --color-terracota-deep: #7F3E26;
+  --color-off-white: #FAF7F2;
+  --color-bege-areia: #E8DED2;
+  --color-cinza-azulado: #526268;
+
+  --font-display: var(--font-display-raw), serif;
+  --font-body: var(--font-body-raw), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body-raw), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display-raw), serif;
+}
+
+@keyframes swim-a {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  33% { transform: translate(34px, -30px) rotate(4deg); }
+  66% { transform: translate(-18px, -12px) rotate(-10deg); }
+}
+
+@keyframes swim-b {
+  0%, 100% { transform: translate(0, 0) rotate(8deg); }
+  33% { transform: translate(-32px, 24px) rotate(-6deg); }
+  66% { transform: translate(16px, 10px) rotate(12deg); }
+}
+
+.animate-swim-a {
+  animation: swim-a 10s ease-in-out infinite;
+}
+
+.animate-swim-b {
+  animation: swim-b 12s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.45; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+.chat-pulse-ring {
+  animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.blob {
+  width: 100%;
+  border-radius: 62% 38% 53% 47% / 48% 42% 58% 52%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
