@@ -80,8 +80,8 @@ export default function Hero() {
             <Image
               src="/images/grazielle-hero.jpg"
               alt="Grazielle Bello, psicóloga, sorrindo"
-              width={800}
-              height={534}
+              width={1600}
+              height={1068}
               priority
               className="h-full w-full object-cover aspect-[4/5]"
             />
