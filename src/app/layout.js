@@ -13,10 +13,29 @@ const body = Nunito_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const SITE_URL = "https://www.graziellebello.com.br";
+const TITLE = "Grazielle Bello | Psicóloga infantil — TEA, TDAH e desenvolvimento";
+const DESCRIPTION =
+  "Atendimento psicológico infantil com base em Análise do Comportamento Aplicada (ABA) e Terapia Cognitivo-Comportamental. Agende uma conversa com Grazielle Bello, psicóloga no Rio de Janeiro.";
+
 export const metadata = {
-  title: "Grazielle Bello | Psicóloga infantil — TEA, TDAH e desenvolvimento",
-  description:
-    "Atendimento psicológico infantil com base em Análise do Comportamento Aplicada (ABA) e Terapia Cognitivo-Comportamental. Agende uma conversa com Grazielle Bello, psicóloga no Rio de Janeiro.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: SITE_URL,
+    siteName: "Grazielle Bello — Psicóloga",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }) {
