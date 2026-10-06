@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { MessageCircle, X, Send } from "lucide-react";
 
-const WHATSAPP_URL = "https://wa.me/5521969541348";
+const WHATSAPP_URL = "https://wa.me/5521969541348?text=Ol%C3%A1%2C%20Grazielle!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa.";
 const INSTAGRAM_URL = "https://instagram.com/psicologagraziellebello";
 const EMAIL_URL = "mailto:psigraziellebello@gmail.com";
 

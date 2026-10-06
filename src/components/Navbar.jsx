@@ -11,7 +11,7 @@ const LINKS = [
   { href: "#contato", label: "Contato" },
 ];
 
-const WHATSAPP_URL = "https://wa.me/5521969541348";
+const WHATSAPP_URL = "https://wa.me/5521969541348?text=Ol%C3%A1%2C%20Grazielle!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa.";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

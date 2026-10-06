@@ -61,7 +61,7 @@ export default function ComoFunciona() {
             filho.
           </p>
           <a
-            href="https://wa.me/5521969541348"
+            href="https://wa.me/5521969541348?text=Ol%C3%A1%2C%20Grazielle!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center justify-center gap-2.5 rounded-full bg-terracota-dark hover:bg-terracota-deep text-off-white px-7 py-3.5 text-[15px] font-semibold transition-colors"

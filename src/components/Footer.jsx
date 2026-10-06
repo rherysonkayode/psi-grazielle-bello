@@ -35,7 +35,7 @@ export default function Footer() {
 
         <div className="space-y-4 text-[15px]">
           <a
-            href="https://wa.me/5521969541348"
+            href="https://wa.me/5521969541348?text=Ol%C3%A1%2C%20Grazielle!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 hover:text-azul-serenity transition-colors"
