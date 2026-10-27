@@ -1,0 +1,10 @@
+{
+  // Publicação na Cloudflare (Workers Static Assets): serve a pasta `out/`
+  // gerada por `npm run build`. Cabeçalhos de segurança em public/_headers.
+  "name": "psi-grazielle-bello",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

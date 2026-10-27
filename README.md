@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Grazielle Bello — Psicóloga
 
-## Getting Started
+Site de [graziellebello.com.br](https://www.graziellebello.com.br).
+Next.js 16 + Tailwind CSS 4, site 100% estático (`output: "export"`).
 
-First, run the development server:
+## Rodar localmente
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # gera o site estático na pasta out/
+npx serve out   # testa a versão final localmente
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Publicação
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+O build gera a pasta `out/`, que pode ser publicada em qualquer um destes:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Cloudflare (Workers — arquivos estáticos)**, conforme `wrangler.jsonc`:
 
-## Learn More
+| Campo | Valor |
+|---|---|
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Variável de ambiente | `NODE_VERSION` = `22` |
 
-To learn more about Next.js, take a look at the following resources:
+Cabeçalhos de segurança e cache: `public/_headers`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Vercel**: importe o repositório; a Vercel reconhece o Next.js sozinha. Cabeçalhos de segurança: `vercel.json`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Nos dois casos, cada `git push` na `main` publica automaticamente.
 
-## Deploy on Vercel
+## Onde editar
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| O quê | Arquivo |
+|---|---|
+| Nome, CRP, telefone, e-mail, Instagram, cidade, domínio | `src/lib/site.js` |
+| Perguntas frequentes (seção "Dúvidas" **e** assistente) | `src/lib/faq.js` (`naSecao: false` = só no assistente) |
+| Áreas de atuação (TEA/TDAH, luto, pais, escolas, TCC) | `src/components/Atuacao.jsx` |
+| Texto "Sobre" | `src/components/Sobre.jsx` |
+| Formação e trajetória | `src/components/Formacao.jsx` |
+| Cores e fontes | `src/app/globals.css` e `src/app/layout.js` |
+| Foto e logo | `public/images/` |
+| Imagem de compartilhamento (redes e WhatsApp) | `src/app/opengraph-image.jpg` e `twitter-image.jpg` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estrutura da página
+
+Topo → Sobre → Atuação → Como funciona → Formação e trajetória → Dúvidas → Rodapé (contato),
+além do botão do WhatsApp e do assistente de dúvidas fixos no canto. Política de privacidade em `/privacidade`.
+
+## Animações
+
+Todas respeitam a preferência de "reduzir movimento" do sistema e, sem JavaScript, o conteúdo aparece normalmente.
+
+- **Entrada do topo** em CSS puro (aparece sem esperar o JavaScript), com o grifo que se desenha sob "suas emoções".
+- **Bolhas de aquário** subindo no topo, no convite do WhatsApp e no rodapé; **peixinhos** da marca nadando.
+- **Onda** suave separando o topo do restante da página.
+- **Revelação ao rolar** em seções e cartões; a **linha dos passos** e a **linha da trajetória** se desenham.
+- Cartões de atuação sobem levemente e o ícone dá um "nadinho" ao passar o mouse.
+
+## Assistente de dúvidas
+
+Funciona só no navegador (nada é enviado). Pedidos de ajuda em crise têm prioridade e mostram o CVV 188.
+As palavras-chave só casam no início de uma palavra ("pos" não casa com "posso").
