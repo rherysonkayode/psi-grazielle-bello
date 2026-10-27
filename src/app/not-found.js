@@ -42,6 +42,7 @@ export default function NotFound() {
           voltar para o início do site.
         </p>
         <Link
+          prefetch={false}
           href="/"
           className="mt-8 inline-flex items-center justify-center rounded-full bg-terracota-dark px-7 py-3.5 text-[15px] font-semibold text-off-white transition-colors hover:bg-terracota-deep"
         >

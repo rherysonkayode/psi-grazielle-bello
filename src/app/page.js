@@ -4,46 +4,59 @@ import Sobre from "@/components/Sobre";
 import Atuacao from "@/components/Atuacao";
 import ComoFunciona from "@/components/ComoFunciona";
 import Formacao from "@/components/Formacao";
+import Duvidas from "@/components/Duvidas";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
+import { FAQ_SECAO } from "@/lib/faq";
+import { CONTATO, LINKS, PESSOA, SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://www.graziellebello.com.br";
-const INSTAGRAM_URL = "https://instagram.com/psicologagraziellebello";
-
-// Dados estruturados (Schema.org) para o Google entender quem é e o que oferece
+// Dados estruturados (Schema.org) para o Google entender quem é, o que oferece e as dúvidas mais comuns
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#atendimento`,
-      name: "Grazielle Bello — Psicóloga",
+      name: `${PESSOA.nome} — Psicóloga`,
       url: SITE_URL,
       image: `${SITE_URL}/opengraph-image.jpg`,
       description:
-        "Atendimento psicológico infantil com base em Análise do Comportamento Aplicada (ABA) e Terapia Cognitivo-Comportamental, com foco em TEA, TDAH e desenvolvimento infantil.",
-      telephone: "+55 21 96954-1348",
-      email: "psigraziellebello@gmail.com",
-      areaServed: { "@type": "City", name: "Rio de Janeiro" },
+        "Atendimento psicológico para crianças, adolescentes e adultos, com base em Análise do Comportamento Aplicada (ABA) e Terapia Cognitivo-Comportamental: TEA, TDAH, desenvolvimento infantil e luto. Online e presencial no Rio de Janeiro.",
+      telephone: CONTATO.telefoneE164,
+      email: CONTATO.email,
+      areaServed: [
+        { "@type": "City", name: CONTATO.cidade },
+        { "@type": "Country", name: "Brasil" },
+      ],
       knowsAbout: [
         "Transtorno do Espectro Autista (TEA)",
         "TDAH",
         "Análise do Comportamento Aplicada (ABA)",
         "Terapia Cognitivo-Comportamental",
         "Desenvolvimento infantil",
+        "Luto",
+        "Orientação a pais",
       ],
-      sameAs: [INSTAGRAM_URL],
+      sameAs: [LINKS.instagram],
       founder: { "@id": `${SITE_URL}/#grazielle` },
     },
     {
       "@type": "Person",
       "@id": `${SITE_URL}/#grazielle`,
-      name: "Grazielle Moreira Bello",
+      name: PESSOA.nomeCompleto,
       jobTitle: "Psicóloga",
-      identifier: { "@type": "PropertyValue", propertyID: "CRP", value: "05/81229" },
+      identifier: { "@type": "PropertyValue", propertyID: "CRP", value: PESSOA.crpNumero },
       alumniOf: { "@type": "CollegeOrUniversity", name: "UNISUAM" },
       url: SITE_URL,
-      sameAs: [INSTAGRAM_URL],
+      sameAs: [LINKS.instagram],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: FAQ_SECAO.map((f) => ({
+        "@type": "Question",
+        name: f.label,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
     },
   ],
 };
@@ -64,6 +77,7 @@ export default function Home() {
         <Atuacao />
         <ComoFunciona />
         <Formacao />
+        <Duvidas />
       </main>
       <Footer />
       <ChatBot />

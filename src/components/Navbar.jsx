@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MessageCircle, Menu, X } from "lucide-react";
+import { LINKS as URLS, PESSOA } from "@/lib/site";
 
 const LINKS = [
   { href: "#sobre", label: "Sobre" },
   { href: "#atuacao", label: "Atuação" },
   { href: "#atendimento", label: "Atendimento" },
+  { href: "#formacao", label: "Formação" },
+  { href: "#duvidas", label: "Dúvidas" },
   { href: "#contato", label: "Contato" },
 ];
-
-const WHATSAPP_URL = "https://wa.me/5521969541348?text=Ol%C3%A1%2C%20Grazielle!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa.";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,29 +25,29 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Esc fecha o menu do celular
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e) => e.key === "Escape" && setMenuOpen(false);
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || menuOpen
           ? "bg-off-white/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(53,108,125,0.08)]"
           : "bg-transparent"
       }`}
     >
       <nav className="mx-auto max-w-6xl px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5">
-          <Image
-            src="/images/logo-peixe.png"
-            alt=""
-            width={36}
-            height={38}
-            className="h-9 w-auto"
-          />
-          <span className="font-display text-xl text-azul-profundo-dark">
-            Grazielle Bello
-          </span>
+        <a href="#top" className="flex min-h-11 items-center gap-2.5">
+          <Image src="/images/logo-peixe.png" alt="" width={36} height={38} className="h-9 w-auto" />
+          <span className="font-display text-xl text-azul-profundo-dark">{PESSOA.nome}</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-9 text-[15px] text-azul-profundo-dark/90">
+        <ul className="hidden lg:flex items-center gap-8 text-[15px] text-azul-profundo-dark/90">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -60,18 +61,18 @@ export default function Navbar() {
         </ul>
 
         <a
-          href={WHATSAPP_URL}
+          href={URLS.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center gap-2 rounded-full bg-terracota-dark hover:bg-terracota-deep text-off-white px-5 py-2.5 text-sm font-semibold transition-colors"
+          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-terracota-dark hover:bg-terracota-deep text-off-white px-5 py-2.5 text-sm font-semibold transition-colors"
         >
           <MessageCircle size={16} strokeWidth={2.4} />
           Agendar conversa
         </a>
 
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
           <a
-            href={WHATSAPP_URL}
+            href={URLS.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-terracota-dark text-off-white w-11 h-11"
@@ -83,6 +84,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuOpen}
+            aria-controls="menu-celular"
             className="inline-flex items-center justify-center rounded-full w-11 h-11 text-azul-profundo-dark"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -91,15 +93,11 @@ export default function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden bg-off-white/95 backdrop-blur-md border-t border-azul-serenity/40">
-          <ul className="flex flex-col px-6 py-4 gap-1 text-[15px] text-azul-profundo-dark/90">
+        <div id="menu-celular" className="lg:hidden border-t border-azul-serenity/40">
+          <ul className="flex flex-col px-6 py-3 text-[16px] text-azul-profundo-dark/90">
             {LINKS.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2.5"
-                >
+                <a href={link.href} onClick={() => setMenuOpen(false)} className="block py-3">
                   {link.label}
                 </a>
               </li>
